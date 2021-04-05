@@ -1,0 +1,62 @@
+Exercici - 1----------------------------------- 
+
+
+SELECT count(*)
+FROM flights;
+
+
+
+Exercici - 2----------------------------------- 
+
+
+SELECT 
+Origin, AVG(DepDelay), AVG(ArrDelay)  
+
+FROM flights
+GROUP BY Origin ASC;
+
+
+
+Exercici - 3----------------------------------- 
+
+
+SELECT 	Origin, colYear, colMonth, avg(ArrDelay) 
+AS prom_arribades 
+FROM flights
+GROUP BY Origin, colYear, colMonth
+ORDER BY Origin, colYear, colMonth asc;
+
+
+Exercici - 4----------------------------------- 
+USAR JOIN
+
+SELECT air.city,fl.colYear,fl.colMonth,AVG(fl.ArrDelay) AS prom_arribades
+
+FROM usairlineflights2.flights as fl
+JOIN usairlineflights2.usairports as air
+
+
+ON fl.Origin=air.IATA
+
+group by Origin, colYear, colMonth;
+
+
+Exercici - 5----------------------------------- 
+
+
+SELECT UniqueCarrier, colYear, colMonth, avg(ArrDelay) AS avg_delay,
+sum(Cancelled) AS total_cancelled 
+
+FROM flights
+GROUP BY UniqueCarrier, colYear, colMonth
+HAVING total_cancelled > 0
+ORDER BY total_cancelled desc;
+
+Exercici - 6----------------------------------- 
+
+
+SELECT TailNum, SUM(Distance) as distanceTotal 
+FROM usairlineflights.flights
+group by TailNum
+order by totalDistance desc
+LIMIT 10;
